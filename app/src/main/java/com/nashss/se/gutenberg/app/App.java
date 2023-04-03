@@ -20,15 +20,16 @@ public class App {
 
         App app = new App(new ATAUserHandler(), bookDao);
         app.run();
-   }
+    }
 
     private final ATAUserHandler inputHandler;
     private final BookDao bookDao;
 
     /**
      * Creates a new instance of the Gutenberg application
+     * 
      * @param inputHandler Used to get user input from the console
-     * @param bookDao Data access object for interacting with book data
+     * @param bookDao      Data access object for interacting with book data
      */
     public App(ATAUserHandler inputHandler, BookDao bookDao) {
         this.inputHandler = inputHandler;
@@ -44,7 +45,7 @@ public class App {
             System.out.println(userResponse);
             System.out.println(MenuOption.renderMenu());
             userResponse = handleUserRequest();
-        } while(userResponse != MenuOption.QUIT.toString());
+        } while (userResponse != MenuOption.QUIT.toString());
     }
 
     private String handleUserRequest() {
@@ -59,7 +60,7 @@ public class App {
                 return allBooks();
             case BOOK_BY_ID:
                 return bookById();
-           case SEARCH_BOOKS_BY_AUTHOR:
+            case SEARCH_BOOKS_BY_AUTHOR:
                 return searchByAuthor();
             default:
                 return "Unimplemented Operation!";
@@ -74,6 +75,9 @@ public class App {
     private String bookById() {
         int id = inputHandler.getInteger("Enter a book id: ");
         Book book = bookDao.getById(id);
+        if (book == null) {
+            return String.format("\nNo Book with that ID number (%d), please try again.\n", id);
+        }
         return renderBookTable(book);
     }
 
@@ -110,8 +114,7 @@ public class App {
                 Integer.toString(book.getId()),
                 book.getLink(),
                 book.getTitle(),
-                book.getAuthor()
-        );
+                book.getAuthor());
     }
 
 }
