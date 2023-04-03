@@ -59,7 +59,7 @@ public class BookDao {
 
         List<BookData> allBooks = bookDataCsv.getAll();
         for (BookData book : allBooks) {
-            if (book.getAuthor().startsWith(searchName)) {
+            if (book.getAuthor().toLowerCase().contains(searchName.toLowerCase())) {
                 results.add(convertBookData(book));
             }
         }
