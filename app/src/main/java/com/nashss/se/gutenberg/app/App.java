@@ -62,6 +62,8 @@ public class App {
                 return bookById();
             case SEARCH_BOOKS_BY_AUTHOR:
                 return searchByAuthor();
+            case SEARCH_BOOKS_BY_TITLE:
+                return searchByTitle();
             default:
                 return "Unimplemented Operation!";
         }
@@ -88,6 +90,16 @@ public class App {
             return String.format("\nNo books matched author '%s'\n", searchName);
         }
         return renderBookListTable(results);
+    }
+
+    private String searchByTitle() {
+        String searchTitle = inputHandler.getString("Enter book title: ");
+        List<Book> results = bookDao.searchByTitle(searchTitle);
+        if (results.size() == 0) {
+            return String.format("\nNo books matched title '%s'\n", searchTitle);
+        }
+        return renderBookListTable(results);
+
     }
 
     private String renderBookListTable(List<Book> books) {
