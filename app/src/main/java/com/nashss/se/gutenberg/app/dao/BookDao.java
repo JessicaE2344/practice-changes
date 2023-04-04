@@ -88,15 +88,20 @@ public class BookDao {
 
     /**
      * Search books by book author or title.
-     * Calls the searchByAuthor and searchByTitle methods, adding results to the list.
+     * Does a case-sensitive 'contains' search in the author and title fields.
      * @param searchAuthorTitle The name to look for
-     * @return A combined list of books that match the author and title or an empty list if nothing matched
+     * @return A list of books that match the author or title, or an empty list if nothing matched
      */
     public List<Book> searchByAuthorOrTitle(String searchAuthorTitle){
         List<Book> results = new ArrayList<>();
 
-        results.addAll(searchByAuthor(searchAuthorTitle));
-        results.addAll(searchByTitle(searchAuthorTitle));
+        List<BookData> allBooks = bookDataCsv.getAll();
+        for (BookData book : allBooks) {
+            if (book.getTitle().toLowerCase().contains(searchAuthorTitle.toLowerCase()) || 
+                    book.getAuthor().toLowerCase().contains(searchAuthorTitle.toLowerCase())){
+                results.add(convertBookData(book));
+            }
+        }
         
         return results;
     }
