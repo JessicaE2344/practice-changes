@@ -1,4 +1,4 @@
-# u0-project-Gutenberg
+# u0-project-Gutenberg-Snoopy
 
 ## Description
 
