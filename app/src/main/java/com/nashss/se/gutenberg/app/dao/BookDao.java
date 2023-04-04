@@ -50,7 +50,7 @@ public class BookDao {
 
     /**
      * Search books by author name.
-     * Does case-sensitive 'contains' search.
+     * Does case-insensitive 'contains' search.
      * @param searchName The name to look for
      * @return A list of books that match the author name or an empty list if nothing matched
      */
@@ -69,7 +69,7 @@ public class BookDao {
 
     /**
      * Search books by book title.
-     * Does case-sensitive 'contains' search.
+     * Does case-insensitive 'contains' search.
      * @param searchTitle The name to look for
      * @return A list of books that match the title or an empty list if nothing matched
      */
@@ -88,7 +88,7 @@ public class BookDao {
 
     /**
      * Search books by book author or title.
-     * Does a case-sensitive 'contains' search in the author and title fields.
+     * Does a case-insensitive 'contains' search in the author and title fields.
      * @param searchAuthorTitle The name to look for
      * @return A list of books that match the author or title, or an empty list if nothing matched
      */
