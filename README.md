@@ -25,7 +25,8 @@ First, you will need to use a terminal, in our case we utilized WSL. See below f
 ## WSL Setup <a name="wslsetup"></a>
 
 1. Mac based users:
-[Mac_WSL_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107507209)
+![Mac_WSL_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107507209)
+<img src=https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107507209 alt=Mac_WSL_Setup title=Mac_WSL_Setup /> 
 
 2. Windows based users:
 [Windows_WSL_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107510093)
