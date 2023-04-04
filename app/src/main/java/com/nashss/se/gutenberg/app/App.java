@@ -9,6 +9,7 @@ import com.nashss.se.string.TextTable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Represents an instance of the Gutenberg application
@@ -62,6 +63,8 @@ public class App {
                 return bookById();
             case SEARCH_BOOKS_BY_AUTHOR:
                 return searchByAuthor();
+                case RANDOM_BOOK:
+                return getRandomBook();
             default:
                 return "Unimplemented Operation!";
         }
@@ -70,6 +73,15 @@ public class App {
     private String allBooks() {
         List<Book> books = bookDao.getAll();
         return renderBookListTable(books);
+    }
+
+    private String getRandomBook() {
+        Random random = new Random();
+        List<Book> books = bookDao.getAll();
+        int randomBookIndex = random.nextInt(books.size());
+        Book chosenBook = books.get(randomBookIndex);
+
+        return chosenBook.getTitle();
     }
 
     private String bookById() {
