@@ -81,7 +81,7 @@ public class App {
         int randomBookIndex = random.nextInt(books.size());
         Book chosenBook = books.get(randomBookIndex);
 
-        return chosenBook.getTitle();
+        return renderBookTable(chosenBook);
     }
 
     private String bookById() {
