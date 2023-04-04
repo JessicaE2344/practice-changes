@@ -8,9 +8,7 @@
 
 See [Description.md](./DESCRIPTION.md)
 
-## Table of Contents (Optional)
-
-If your README is long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents
 
 1. [Installation](#installation)
 -   [WSL_Setup](#wslsetup)
