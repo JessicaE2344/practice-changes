@@ -30,7 +30,7 @@ public class App {
      * Creates a new instance of the Gutenberg application
      * 
      * @param inputHandler Used to get user input from the console
-     * @param bookDao      Data access object for interacting with book data
+     * @param bookDao Data access object for interacting with book data
      */
     public App(ATAUserHandler inputHandler, BookDao bookDao) {
         this.inputHandler = inputHandler;
@@ -46,7 +46,7 @@ public class App {
             System.out.println(userResponse);
             System.out.println(MenuOption.renderMenu());
             userResponse = handleUserRequest();
-        } while (userResponse != MenuOption.QUIT.toString());
+        } while(userResponse != MenuOption.QUIT.toString());
     }
 
     private String handleUserRequest() {
@@ -65,7 +65,9 @@ public class App {
                 return searchByAuthor();
             case SEARCH_BOOKS_BY_TITLE:
                 return searchByTitle();
-                case RANDOM_BOOK:
+            case SEARCH_BOOKS_BY_AUTHOR_OR_TITLE:
+                return searchByAuthorOrTitle();
+            case RANDOM_BOOK:
                 return getRandomBook();
             default:
                 return "Unimplemented Operation!";
@@ -111,7 +113,15 @@ public class App {
             return String.format("\nNo books matched title '%s'\n", searchTitle);
         }
         return renderBookListTable(results);
+    }
 
+    private String searchByAuthorOrTitle() {
+        String searchAuthorTitle = inputHandler.getString("Enter search term: ");
+        List<Book> results = bookDao.searchByAuthorOrTitle(searchAuthorTitle);
+        if (results.size() == 0) {
+            return String.format("\nNo books matched author or title '%s'\n", searchAuthorTitle);
+        }
+        return renderBookListTable(results);
     }
 
     private String renderBookListTable(List<Book> books) {
