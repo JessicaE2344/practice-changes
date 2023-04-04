@@ -104,8 +104,8 @@ public class App {
     }
 
     private String searchByAuthorOrTitle() {
-        String searchAuthorTitle = inputHandler.getString("Enter book title: ");
-        List<Book> results = bookDao.searchByTitle(searchAuthorTitle);
+        String searchAuthorTitle = inputHandler.getString("Enter search term: ");
+        List<Book> results = bookDao.searchByAuthorOrTitle(searchAuthorTitle);
         if (results.size() == 0) {
             return String.format("\nNo books matched author or title '%s'\n", searchAuthorTitle);
         }
