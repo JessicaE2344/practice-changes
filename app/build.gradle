@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation project(':data')
     implementation 'com.nashss.se.shared-java:nss-resources:1.+'
+    implementation 'org.apache.commons:commons-csv:1.10.0'
 }
 
 application {

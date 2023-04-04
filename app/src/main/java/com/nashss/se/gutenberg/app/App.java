@@ -64,6 +64,8 @@ public class App {
                 return searchByAuthor();
             case SEARCH_BOOKS_BY_TITLE:
                 return searchByTitle();
+            case ADD_TO_FAVORITES:
+                return addToFavorites();
             default:
                 return "Unimplemented Operation!";
         }
@@ -99,6 +101,25 @@ public class App {
             return String.format("\nNo books matched title '%s'\n", searchTitle);
         }
         return renderBookListTable(results);
+
+    }
+
+    private String addToFavorites() {
+        int id = inputHandler.getInteger("Enter the chosen book's id: ");
+        Book book = bookDao.getById(id);
+        String results = "";
+        if (book == null) {
+            return String.format("\nNo Book with that ID number (%d), please try again.\n", id);
+        }
+        System.out.println(renderBookTable(book));
+        String addingBook = inputHandler.getString("Is this the book you would like to add? Y or N: ");
+        if (addingBook.toLowerCase().equals("y")){
+            results = bookDao.addToFave(id);
+        }
+        else {
+            results = "Please try again after finding the correct Book ID";
+        }
+        return results;
 
     }
 
