@@ -86,6 +86,21 @@ public class BookDao {
         return results;
     }
 
+    /**
+     * Search books by book author or title.
+     * Calls the searchByAuthor and searchByTitle methods, adding results to the list.
+     * @param searchAuthorTitle The name to look for
+     * @return A combined list of books that match the author and title or an empty list if nothing matched
+     */
+    public List<Book> searchByAuthorOrTitle(String searchAuthorTitle){
+        List<Book> results = new ArrayList<>();
+
+        results.addAll(searchByAuthor(searchAuthorTitle));
+        results.addAll(searchByTitle(searchAuthorTitle));
+        
+        return results;
+    }
+
     private List<Book> convertBookDataList(List<BookData> bookDataList) {
         List<Book> books = new ArrayList<>();
         for (BookData bd : bookDataList) {
