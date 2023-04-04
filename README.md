@@ -25,34 +25,34 @@ First, you will need to use a terminal, in our case we utilized WSL. See below f
 ## WSL Setup <a name="wslsetup"></a>
 
 1. Mac based users:
-![Mac_WSL_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107507209)
-<img src=https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107507209 alt=Mac_WSL_Setup title=Mac_WSL_Setup /> 
+    ![Mac_WSL_Setup](images/Mac_WSL_Setup_1.png)
 
 2. Windows based users:
-[Windows_WSL_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107510093)
+    ![Windows_WSL_Setup](images/Windows_WSL_Setup_1.png)
 
 3. This is to help get additional addons and configurations 
-[Additional_WSL_Configuration](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107510325)
+    ![Additional_WSL_Configuration](images/Updates_additional_environment_build.png)
 
 This should get your Terminal setup as our team had it configured.
 
 ## Visual Studio Code Setup <a name="vscodesetup"></a>
 
 1. Mac Users:
-[Mac_VSCode_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107510889)
+    ![Mac_VSCode_Setup](images/Mac_VSCode_Install.png)
 
 2. Windows Users: 
-[Windows_VSCode_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107511187)
+    ![Windows_VSCode_Setup](images/Windows_VSCode_Install.png)
 
 ## Java Installation <a name="javasetup"></a>
 
-[Java_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107511339)
+![Java_Setup](images/Java_installation.png)
 
 ## Gradle Installation <a name="gradleinstall"></a>
+Installation:
+![Gradle_Setup](images/Gradle_install.png)
 
-[Gradle_Setup](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107513011)
-
-[Gradle_Configuration](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107513069)
+Configuration: 
+![Gradle_Configuration](images/Gradle_Configuration.png)
 
 
 ## Usage <a name="usage"></a>
@@ -69,10 +69,10 @@ To start, you will need to clone the repository. In the terminal type the follow
 Here are screenshots of the application and the interface:
 
 When you run the application within the terminal this is how your screen should appear. 
-[Gutenberg_App](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107519224)
+![Gutenberg_App](images/Gutenberg_App.png)
 
 This is an example of one of the functions. I started by choosing Option 3, search books by author, then  entered agatha. This was the return of that data. 
-[Gutenberg_Example](https://github.com/nss-se-cohort-3/u0-project-gutenberg-snoopy/commit/4c3ae386f5841329eb46f25480eb8aaac2d54710#commitcomment-107519597)
+![Gutenberg_Example](images/Gutenberg_Example.png)
 
 
 ## Credits <a name="credits"></a>
