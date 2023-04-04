@@ -67,6 +67,25 @@ public class BookDao {
         return results;
     }
 
+    /**
+     * Search books by book title.
+     * Does case-sensitive 'contains' search.
+     * @param searchTitle The name to look for
+     * @return A list of books that match the title or an empty list if nothing matched
+     */
+    public List<Book> searchByTitle(String searchTitle){
+        List<Book> results = new ArrayList<>();
+
+        List <BookData> allBooks = bookDataCsv.getAll();
+        for (BookData book : allBooks) {
+            if (book.getTitle().toLowerCase().contains(searchTitle.toLowerCase())) {
+                results.add(convertBookData(book));
+            }
+        }
+
+        return results;
+    }
+
     private List<Book> convertBookDataList(List<BookData> bookDataList) {
         List<Book> books = new ArrayList<>();
         for (BookData bd : bookDataList) {
