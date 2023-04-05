@@ -6,12 +6,6 @@ import com.nashss.se.gutenberg.data.BookDataCsv;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.FileReader;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
 
 /**
  * A data access object for interacting with book data
@@ -90,51 +84,6 @@ public class BookDao {
         }
 
         return results;
-    }
-
-    /**
-     * Add a book to the favorites list.
-     * @param id The ID Number of the book being added to the list
-     * @return A list of books that match the title or an empty list if nothing matched
-     */
-    public String addToFave(int id){
-        Boolean existFave = false;
-        try {
-        File csvFile = new File("Favorite_List.csv");
-        if (!csvFile.exists()) {
-            System.out.println("Favorites List has been created");
-            FileWriter csvWriter = new FileWriter(csvFile);
-            csvWriter.append("ID");
-            csvWriter.append("\n");
-            csvWriter.flush();
-            csvWriter.close();
-        }
-        FileReader csvReader = new FileReader(csvFile);
-        Iterable<CSVRecord> records = CSVFormat.RFC4180.parse(csvReader);
-        for (CSVRecord record : records) {
-            String enteredIds = record.get(0);
-            if (!enteredIds.equals("ID")){
-                if (Integer.parseInt(enteredIds) == id){
-                    existFave = true;
-                }
-            }
-        }
-        if (existFave == true){
-            return "This book is already on the favorite list";
-        }
-        else {
-        FileWriter csvWriter = new FileWriter(csvFile, true);
-        csvWriter.append(""+id);
-        csvWriter.append("\n");
-        csvWriter.flush();
-        csvWriter.close();
-        return ("Book ID: " + id + " has been added to your favorites list");
-        }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "An error has occured";
-        }
-        
     }
 
     private List<Book> convertBookDataList(List<BookData> bookDataList) {
