@@ -11,7 +11,8 @@ public enum MenuOption {
     SEARCH_BOOKS_BY_TITLE(4),
     SEARCH_BOOKS_BY_AUTHOR_OR_TITLE(5),
     RANDOM_BOOK(6),
-    ADD_TO_FAVORITES(7);
+    ADD_TO_FAVORITES(7), 
+    REMOVE_FROM_LIST(8);
 
     /**
      * Get the minimum optionNum value for the entire menu
