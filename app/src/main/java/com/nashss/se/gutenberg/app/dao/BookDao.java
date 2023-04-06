@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class BookDao {
     private final BookDataCsv bookDataCsv;
+    private List<BookData> allBooks;
+    private List<Book> books;
 
     /**
      * Construct a new book data access object
@@ -19,6 +21,8 @@ public class BookDao {
      */
     public BookDao(BookDataCsv bookDataCsv) {
         this.bookDataCsv = bookDataCsv;
+        this.allBooks = bookDataCsv.getAll();
+        this.books = convertBookDataList(allBooks);
     }
 
     /**
@@ -26,8 +30,6 @@ public class BookDao {
      * @return A list of books
      */
     public List<Book> getAll() {
-        List<BookData> bookData = bookDataCsv.getAll();
-        List<Book> books = convertBookDataList(bookData);
         return books;
     }
 
@@ -37,14 +39,11 @@ public class BookDao {
      * @return The book with the given id or null if no book is found
      */
     public Book getById(int id) {
-        List<BookData> allBooks = bookDataCsv.getAll();
-
         for (BookData book : allBooks) {
             if (book.getId().equals(Integer.toString(id))) {
                 return convertBookData(book);
             }
         }
-
         return null;
     }
 
@@ -57,7 +56,6 @@ public class BookDao {
     public List<Book> searchByAuthor(String searchName) {
         List<Book> results = new ArrayList<>();
 
-        List<BookData> allBooks = bookDataCsv.getAll();
         for (BookData book : allBooks) {
             if (book.getAuthor().toLowerCase().contains(searchName.toLowerCase())) {
                 results.add(convertBookData(book));
@@ -76,7 +74,6 @@ public class BookDao {
     public List<Book> searchByTitle(String searchTitle){
         List<Book> results = new ArrayList<>();
 
-        List <BookData> allBooks = bookDataCsv.getAll();
         for (BookData book : allBooks) {
             if (book.getTitle().toLowerCase().contains(searchTitle.toLowerCase())) {
                 results.add(convertBookData(book));
@@ -95,7 +92,6 @@ public class BookDao {
     public List<Book> searchByAuthorOrTitle(String searchAuthorTitle){
         List<Book> results = new ArrayList<>();
 
-        List<BookData> allBooks = bookDataCsv.getAll();
         for (BookData book : allBooks) {
             if (book.getTitle().toLowerCase().contains(searchAuthorTitle.toLowerCase()) || 
                     book.getAuthor().toLowerCase().contains(searchAuthorTitle.toLowerCase())){
@@ -104,6 +100,27 @@ public class BookDao {
         }
         
         return results;
+    }
+
+    /**
+     * Removes a particular book from all of the books based on id
+     * 
+     * @param id The id of the book to remove
+     * @return The removed book from all books
+     */
+    public Book removeBookFromList(String id) {
+        Book bookToRemove = null;
+
+        for (int i = 0; i < books.size(); i++) {
+            if (books.get(i).getId() == Integer.parseInt(id)) {
+                bookToRemove = books.get(i);
+                books.remove(i);
+                allBooks.remove(i);
+                break;
+            }
+        }
+
+        return bookToRemove;
     }
 
     private List<Book> convertBookDataList(List<BookData> bookDataList) {
