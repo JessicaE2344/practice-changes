@@ -3,9 +3,6 @@ package com.nashss.se.gutenberg.app;
 import com.nashss.se.gutenberg.app.dao.BookDao;
 import com.nashss.se.gutenberg.app.model.Book;
 import com.nashss.se.gutenberg.data.BookDataCsv;
-import com.nashss.se.gutenberg.app.dao.FavoritesDao;
-import com.nashss.se.gutenberg.data.FaveListCsv;
-
 import com.nashss.se.input.console.ATAUserHandler;
 import com.nashss.se.string.TextTable;
 
@@ -19,28 +16,27 @@ import java.util.Random;
 public class App {
     public static void main(String[] args) {
         BookDataCsv bookDataCsv = new BookDataCsv();
-        BookDao bookDao = new BookDao(bookDataCsv);
-        FaveListCsv faveListCsv = new FaveListCsv();
-        FavoritesDao favoritesDao = new FavoritesDao(faveListCsv);
+        // FaveListCsv faveListCsv = new FaveListCsv();
+        // FavoritesDao favoritesDao = new FavoritesDao(faveListCsv);
 
-        App app = new App(new ATAUserHandler(), bookDao, favoritesDao);
+        App app = new App(new ATAUserHandler(), new BookDao(bookDataCsv));
         app.run();
     }
 
     private final ATAUserHandler inputHandler;
     private final BookDao bookDao;
-    private final FavoritesDao favoritesDao;
+    // private final FavoritesDao favoritesDao;
 
     /**
      * Creates a new instance of the Gutenberg application
      * 
      * @param inputHandler Used to get user input from the console
-     * @param bookDao Data access object for interacting with book data
+     * @param bookDao      Data access object for interacting with book data
      */
-    public App(ATAUserHandler inputHandler, BookDao bookDao, FavoritesDao favoritesDao) {
+    public App(ATAUserHandler inputHandler, BookDao bookDao) {
         this.inputHandler = inputHandler;
         this.bookDao = bookDao;
-        this.favoritesDao = favoritesDao;
+        // this.favoritesDao = favoritesDao;
     }
 
     /**
@@ -52,7 +48,7 @@ public class App {
             System.out.println(userResponse);
             System.out.println(MenuOption.renderMenu());
             userResponse = handleUserRequest();
-        } while(userResponse != MenuOption.QUIT.toString());
+        } while (userResponse != MenuOption.QUIT.toString());
     }
 
     private String handleUserRequest() {
@@ -77,6 +73,8 @@ public class App {
                 return getRandomBook();
             case ADD_TO_FAVORITES:
                 return addToFavorites();
+            case REMOVE_FROM_LIST:
+                return removeBookFromList();    
             default:
                 return "Unimplemented Operation!";
         }
@@ -84,6 +82,7 @@ public class App {
 
     private String allBooks() {
         List<Book> books = bookDao.getAll();
+
         return renderBookListTable(books);
     }
 
@@ -141,14 +140,22 @@ public class App {
         }
         System.out.println(renderBookTable(book));
         String addingBook = inputHandler.getString("Is this the book you would like to add? Y or N: ");
-        if (addingBook.toLowerCase().equals("y")){
-            results = favoritesDao.addToFave(id);
-        }
-        else {
+        if (addingBook.toLowerCase().equals("y")) {
+            // results = favoritesDao.addToFave(id);
+        } else {
             results = "Please try again after finding the correct Book ID";
         }
         return results;
 
+    }
+
+    private String removeBookFromList() {
+        String id = inputHandler.getString("Enter a book id: ");
+        Book removedBook = bookDao.removeBookFromList(id);
+        if (removedBook == null) {
+            return String.format("\nNo Book with that ID number (%s), please try again.\n", id);
+        }
+        return renderBookTable(removedBook);
     }
 
     private String renderBookListTable(List<Book> books) {
@@ -179,3 +186,4 @@ public class App {
     }
 
 }
+
